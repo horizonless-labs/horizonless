@@ -1,0 +1,33 @@
+[
+  {
+    "id": "22379708779859969",
+    "paging_token": "22379708779859969",
+    "transaction_successful": true,
+    "source_account": "GANIEGW7KNWNBOIDVPGNFGAE6KSIB3ISDBE42RIRLYLHJXYQLYKZGK4E",
+    "type": "path_payment_strict_send",
+    "type_i": 13,
+    "created_at": "2026-10-15T15:09:57Z",
+    "transaction_hash": "6e45829e95545dfb16b31d7323ad796d3b17842704ca3f058c55e464ffedd3ef",
+    "asset_type": "credit_alphanum4",
+    "asset_code": "HLC",
+    "asset_issuer": "GDL6AMLQGJ76XJ4RTPZXT4NK6T75OR4OK3ERNJLC3LTFRN22Z42MIBAT",
+    "from": "GANIEGW7KNWNBOIDVPGNFGAE6KSIB3ISDBE42RIRLYLHJXYQLYKZGK4E",
+    "to": "GBTI2HZXKSMWLPVVCS6HIZSYIUUM5HSO2N4F3LUVXF7QPIOWDXWGYNOU",
+    "amount": "10.0000000",
+    "path": [
+      {
+        "asset_type": "credit_alphanum4",
+        "asset_code": "HLA",
+        "asset_issuer": "GDL6AMLQGJ76XJ4RTPZXT4NK6T75OR4OK3ERNJLC3LTFRN22Z42MIBAT"
+      },
+      {
+        "asset_type": "credit_alphanum12",
+        "asset_code": "HLBRIDGE",
+        "asset_issuer": "GDL6AMLQGJ76XJ4RTPZXT4NK6T75OR4OK3ERNJLC3LTFRN22Z42MIBAT"
+      }
+    ],
+    "source_amount": "10.0000000",
+    "destination_min": "9.0000000",
+    "source_asset_type": "native"
+  }
+]

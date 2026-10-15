@@ -1,0 +1,6 @@
+{
+  "network": "testnet",
+  "hash": "9ce9485f099ad9c0ee7513035cd4fddecb836442cb7ab960acd26dda22b3addb",
+  "label": "failed path_payment_strict_send (under destination minimum)",
+  "capturedAt": "2026-10-15T15:10:15.055Z"
+}

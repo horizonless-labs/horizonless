@@ -1,0 +1,18 @@
+[
+  {
+    "id": "22379137549213697",
+    "paging_token": "22379137549213697",
+    "transaction_successful": true,
+    "source_account": "GAC35UVYN2ZR6A6PZZAPMGAKWWOCI6O7HGWHYS4HGREUIT6SW5K2UKF3",
+    "type": "payment",
+    "type_i": 1,
+    "created_at": "2026-10-15T14:58:52Z",
+    "transaction_hash": "250e82cfae4ec5a794037f16dc93dbc593b405f9a76bf4261ea2cb338c3c5742",
+    "asset_type": "credit_alphanum12",
+    "asset_code": "PYUSD",
+    "asset_issuer": "GBT2KJDKUZYZTQPCSR57VZT5NJHI4H7FOB5LT5FPRWSR7I5B4FS3UU7G",
+    "from": "GAC35UVYN2ZR6A6PZZAPMGAKWWOCI6O7HGWHYS4HGREUIT6SW5K2UKF3",
+    "to": "GB7U7ODIHW4QFO7L3KMO6SJJ6Z56PQ7YWCNGCHAEQZ34GDMQCBFC2FVB",
+    "amount": "0.0000001"
+  }
+]

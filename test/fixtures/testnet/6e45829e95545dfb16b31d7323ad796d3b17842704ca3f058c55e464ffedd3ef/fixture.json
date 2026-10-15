@@ -1,0 +1,6 @@
+{
+  "network": "testnet",
+  "hash": "6e45829e95545dfb16b31d7323ad796d3b17842704ca3f058c55e464ffedd3ef",
+  "label": "path_payment_strict_send with 2-hop path (credit_alphanum12 in path)",
+  "capturedAt": "2026-10-15T15:10:13.896Z"
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "22379274988167169",
+    "paging_token": "22379274988167169",
+    "transaction_successful": true,
+    "source_account": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ",
+    "type": "begin_sponsoring_future_reserves",
+    "type_i": 16,
+    "created_at": "2026-10-15T15:01:32Z",
+    "transaction_hash": "69b59a6cc60a21127a70438b961b71eb82d78edaadf5d84884101c87895c2fa4",
+    "sponsored_id": "GDFHSCNYHGKOIPTI3UMGZSN56HHKIZZPW56B2UCHHZZVPTQHBN7KYKGS"
+  },
+  {
+    "id": "22379274988167170",
+    "paging_token": "22379274988167170",
+    "transaction_successful": true,
+    "source_account": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ",
+    "type": "create_account",
+    "type_i": 0,
+    "created_at": "2026-10-15T15:01:32Z",
+    "transaction_hash": "69b59a6cc60a21127a70438b961b71eb82d78edaadf5d84884101c87895c2fa4",
+    "sponsor": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ",
+    "starting_balance": "0.0000000",
+    "funder": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ",
+    "account": "GDFHSCNYHGKOIPTI3UMGZSN56HHKIZZPW56B2UCHHZZVPTQHBN7KYKGS"
+  },
+  {
+    "id": "22379274988167171",
+    "paging_token": "22379274988167171",
+    "transaction_successful": true,
+    "source_account": "GDFHSCNYHGKOIPTI3UMGZSN56HHKIZZPW56B2UCHHZZVPTQHBN7KYKGS",
+    "type": "change_trust",
+    "type_i": 6,
+    "created_at": "2026-10-15T15:01:32Z",
+    "transaction_hash": "69b59a6cc60a21127a70438b961b71eb82d78edaadf5d84884101c87895c2fa4",
+    "sponsor": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ",
+    "asset_type": "credit_alphanum4",
+    "asset_code": "USDC",
+    "asset_issuer": "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+    "limit": "922337203685.4775807",
+    "trustee": "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+    "trustor": "GDFHSCNYHGKOIPTI3UMGZSN56HHKIZZPW56B2UCHHZZVPTQHBN7KYKGS"
+  },
+  {
+    "id": "22379274988167172",
+    "paging_token": "22379274988167172",
+    "transaction_successful": true,
+    "source_account": "GDFHSCNYHGKOIPTI3UMGZSN56HHKIZZPW56B2UCHHZZVPTQHBN7KYKGS",
+    "type": "end_sponsoring_future_reserves",
+    "type_i": 17,
+    "created_at": "2026-10-15T15:01:32Z",
+    "transaction_hash": "69b59a6cc60a21127a70438b961b71eb82d78edaadf5d84884101c87895c2fa4",
+    "begin_sponsor": "GBRMCUNXN6D2OJNI4M37AW6MNEM5OUPQBOM4IZ5WJ3OOORCUO4IDOBJJ"
+  }
+]

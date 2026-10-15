@@ -1,0 +1,14 @@
+[
+  {
+    "id": "22379262103265281",
+    "paging_token": "22379262103265281",
+    "transaction_successful": true,
+    "source_account": "GCNH7LJIPQ5U2FWG2ZHX27N5TNXWB7XWNA2B7IXWI7X5EVQBOKQLWYSO",
+    "type": "account_merge",
+    "type_i": 8,
+    "created_at": "2026-10-15T15:01:17Z",
+    "transaction_hash": "178840a3e2bd4e7767890e917b2c9ab1b322414a099510a1dfb6890d73796762",
+    "account": "GCNH7LJIPQ5U2FWG2ZHX27N5TNXWB7XWNA2B7IXWI7X5EVQBOKQLWYSO",
+    "into": "GBFAIH5WKAJQ77NG6BZG7TGVGXHPX4SQLIJ7BENJMCVCZSUZPSISCLU5"
+  }
+]

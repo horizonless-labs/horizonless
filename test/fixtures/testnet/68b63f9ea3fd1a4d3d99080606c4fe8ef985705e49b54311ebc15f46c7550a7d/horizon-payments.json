@@ -1,0 +1,18 @@
+[
+  {
+    "id": "22379274988163073",
+    "paging_token": "22379274988163073",
+    "transaction_successful": false,
+    "source_account": "GA45X2ZEFGTCKMORBEGG3G4RC7AFQB4PGQ5UBH73IQF4MAPHBUQ6BBGO",
+    "type": "payment",
+    "type_i": 1,
+    "created_at": "2026-10-15T15:01:32Z",
+    "transaction_hash": "68b63f9ea3fd1a4d3d99080606c4fe8ef985705e49b54311ebc15f46c7550a7d",
+    "asset_type": "credit_alphanum4",
+    "asset_code": "USDC",
+    "asset_issuer": "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+    "from": "GA45X2ZEFGTCKMORBEGG3G4RC7AFQB4PGQ5UBH73IQF4MAPHBUQ6BBGO",
+    "to": "GAYF33NNNMI2Z6VNRFXQ64D4E4SF77PM46NW3ZUZEEU5X7FCHAZCMHKU",
+    "amount": "15.0000000"
+  }
+]

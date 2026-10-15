@@ -1,0 +1,24 @@
+[
+  {
+    "id": "22378836901511169",
+    "paging_token": "22378836901511169",
+    "transaction_successful": true,
+    "source_account": "GDEKQFALLEIDLQFU6QIGNUNJEOSBAOMKJMNTWAJFME2LJZTNCHHYGZZJ",
+    "type": "path_payment_strict_receive",
+    "type_i": 2,
+    "created_at": "2026-10-15T14:53:02Z",
+    "transaction_hash": "385c2dca471845cf93687a94eacba515f005855562885a8f67321a967e9c9450",
+    "asset_type": "credit_alphanum4",
+    "asset_code": "STPB",
+    "asset_issuer": "GBMB6YYTJ2E43YZA57GJMDNWU44PMW557SSEUTIW43IGWPFYJUHFGILF",
+    "from": "GDEKQFALLEIDLQFU6QIGNUNJEOSBAOMKJMNTWAJFME2LJZTNCHHYGZZJ",
+    "to": "GDEKQFALLEIDLQFU6QIGNUNJEOSBAOMKJMNTWAJFME2LJZTNCHHYGZZJ",
+    "amount": "10.0000000",
+    "path": [],
+    "source_amount": "10.0000000",
+    "source_max": "100.0000000",
+    "source_asset_type": "credit_alphanum4",
+    "source_asset_code": "STPC",
+    "source_asset_issuer": "GBMB6YYTJ2E43YZA57GJMDNWU44PMW557SSEUTIW43IGWPFYJUHFGILF"
+  }
+]
