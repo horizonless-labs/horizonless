@@ -1,37 +1,69 @@
 # horizonless
 
-Horizon-style payments, operations and effects, rebuilt from [Stellar RPC](https://developers.stellar.org/docs/data/apis/rpc) data.
+Horizon-style payments and operations, rebuilt from [Stellar RPC](https://developers.stellar.org/docs/data/apis/rpc) data. TypeScript, no server.
 
-> **Status: pre-release.** v0.1 is in development. See the [v0.1 spec](docs/prd/0001-v0.1-payments-from-rpc.md).
+[![CI](https://github.com/horizonless-labs/horizonless/actions/workflows/ci.yml/badge.svg)](https://github.com/horizonless-labs/horizonless/actions/workflows/ci.yml)
+
+> **Status: pre-release (v0.1 in progress).** See the [v0.1 spec](docs/prd/0001-v0.1-payments-from-rpc.md).
 
 ## Why
 
-Horizon [is nearing end-of-life](https://developers.stellar.org/docs/data/apis) and apps are moving to Stellar RPC. RPC doesn't provide Horizon's payments or effects views. The [migration guide](https://developers.stellar.org/docs/data/apis/migrate-from-horizon-to-rpc) lists them as having "No direct RPC equivalent".
+Horizon [is nearing end-of-life](https://developers.stellar.org/docs/data/apis), and apps are moving to Stellar RPC. RPC doesn't provide Horizon's payments or effects views: the [migration guide](https://developers.stellar.org/docs/data/apis/migrate-from-horizon-to-rpc) lists them as having "No direct RPC equivalent".
 
 `horizonless` turns RPC transactions into records with **exactly the same shape and values Horizon returns**, including matching `id`s and `paging_token`s. Your history screens, deposit watchers and stored cursors keep working after you migrate.
 
-- Pure TypeScript functions with no server and no network calls in the converters.
-- Built from the transaction envelope and result, the same way Horizon does it, so it works on any RPC provider whether or not classic events are enabled.
-- Every supported case is tested against Horizon's own recorded answer for the same transaction.
+- **Pure functions.** The converters make no network calls, so they're safe in workers, edge runtimes and batch jobs.
+- **Works on any RPC provider.** Records are built from the transaction envelope and result, the same way Horizon does it, so it doesn't depend on classic events being enabled.
+- **Proven against Horizon.** Every supported case is a real transaction whose output must equal Horizon's recorded answer, and a nightly job checks fresh testnet transactions.
 
-## Planned API (v0.1)
+## Install
+
+```bash
+npm install horizonless @stellar/stellar-sdk
+```
+
+Requires `@stellar/stellar-sdk` 17 or later (peer dependency) and Node 20 or later.
+
+## Usage
 
 ```ts
 import { rpc } from "@stellar/stellar-sdk";
-import { toPayments, streamPayments } from "horizonless";
+import { streamPayments, toOperations, toPayments } from "horizonless";
 
 const server = new rpc.Server("https://soroban-testnet.stellar.org");
-const tx = await server.getTransaction(hash);
-const payments = toPayments(tx); // same records as Horizon's /transactions/{hash}/payments
 
+// One transaction → the same records as Horizon's /transactions/{hash}/payments
+const tx = await server.getTransaction(hash);
+const payments = toPayments(tx);
+
+// All payments touching an account, from a ledger onwards
 for await (const p of streamPayments(server, { startLedger, account: "G..." })) {
-  console.log(p.type, p.amount, p.asset_code ?? "XLM");
+  if (p.type === "payment") console.log(p.from, "→", p.to, p.amount, p.asset_code ?? "XLM");
 }
 ```
 
+`toPayments` and `toOperations` accept the SDK's parsed `getTransaction` result, an item from `getTransactions().transactions`, or the raw JSON-RPC result.
+
+| Horizon endpoint | horizonless |
+|---|---|
+| `GET /transactions/{hash}/payments` | `toPayments(await server.getTransaction(hash))` |
+| `GET /transactions/{hash}/operations` | `toOperations(await server.getTransaction(hash))` |
+| `GET /accounts/{id}/payments` (recent) | `streamPayments(server, { startLedger, account: id })` |
+| `include_failed=true` | `{ includeFailed: true }` |
+
+### Supported today
+
+`create_account`, `payment`, `path_payment_strict_send`, `path_payment_strict_receive`, `account_merge`. This covers every classic type in Horizon's `/payments`. Unsupported operation types are skipped, never thrown. Check `supportedOperationTypes` at runtime.
+
+### Not yet
+
+Muxed-account fields (`*_muxed`, `*_muxed_id`), other operation types, effects, trades, and smart-contract (SAC) transfers. These are [open issues](https://github.com/horizonless-labs/horizonless/issues), and contributions are welcome.
+
+**RPC history:** RPC keeps about 7 days of transactions. horizonless converts what RPC gives it. It isn't a history archive.
+
 ## Contributing
 
-Contributions are welcome. Each operation or effect type is a self-contained issue whose acceptance test is a recorded transaction. A contributor guide is coming with v0.1.
+Each operation or effect type is a self-contained issue, with a recorded transaction as its acceptance test. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

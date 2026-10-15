@@ -1,0 +1,30 @@
+name: Output differs from Horizon
+description: horizonless returns something different from Horizon for a real transaction
+labels: [bug]
+body:
+  - type: input
+    id: hash
+    attributes:
+      label: Transaction hash
+      description: The quickest way for us to reproduce it.
+    validations:
+      required: true
+  - type: dropdown
+    id: network
+    attributes:
+      label: Network
+      options: [testnet, mainnet, futurenet]
+    validations:
+      required: true
+  - type: textarea
+    id: diff
+    attributes:
+      label: What differs
+      description: The field(s) that differ, with Horizon's value and ours.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: horizonless 0.1.0, @stellar/stellar-sdk 17.2.1, Node 22

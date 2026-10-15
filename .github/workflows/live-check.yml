@@ -1,0 +1,28 @@
+name: Live check (testnet)
+
+# Converts recent testnet transactions and compares them with Horizon.
+# Informational: it never blocks merges. Mismatches are uploaded as pending fixtures.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run live-check -- 200
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pending-fixtures
+          path: test/pending

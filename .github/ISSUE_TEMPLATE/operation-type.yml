@@ -1,0 +1,19 @@
+name: Support an operation or effect type
+description: Add a mapper for a Horizon operation or effect type
+labels: [enhancement]
+body:
+  - type: input
+    id: type
+    attributes:
+      label: Horizon type
+      placeholder: manage_sell_offer
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance
+      value: |
+        - [ ] At least one fixture for this type under `test/fixtures/` (captured with `npm run fixture:capture`)
+        - [ ] `toOperations` output equals Horizon's for every fixture
+        - [ ] Mapper doc comment links the Horizon source it was ported from
