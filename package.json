@@ -1,0 +1,66 @@
+{
+  "name": "horizonless",
+  "version": "0.0.0",
+  "description": "Horizon-style payments, operations and effects rebuilt from Stellar RPC data.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/horizonless-labs/horizonless.git"
+  },
+  "homepage": "https://github.com/horizonless-labs/horizonless#readme",
+  "bugs": "https://github.com/horizonless-labs/horizonless/issues",
+  "keywords": [
+    "stellar",
+    "horizon",
+    "stellar-rpc",
+    "soroban",
+    "payments",
+    "xdr"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fixture:capture": "tsx scripts/capture-fixture.ts",
+    "live-check": "tsx scripts/live-check.ts"
+  },
+  "peerDependencies": {
+    "@stellar/stellar-sdk": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@changesets/cli": "^3.0.3",
+    "@stellar/stellar-sdk": "^17.2.1",
+    "@types/node": "^26.6.5",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9",
+    "vitest": "^5.0.5"
+  }
+}
