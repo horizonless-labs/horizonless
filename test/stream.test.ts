@@ -53,7 +53,7 @@ describe("streamPayments", () => {
     const receiver = (all.find((r) => r.type === "payment") as { to: string }).to;
     const { client } = fakeClient(fixtures.map((f) => f.rpc));
     const records = await collect(streamPayments(client, { startLedger: firstLedger, account: receiver }));
-    const parties = ["from", "to", "funder", "account", "into"];
+    const parties = ["from", "to", "funder", "account", "into", "sponsor"];
     expect(records).toEqual(all.filter((r) => parties.some((p) => r[p] === receiver)));
     expect(records.length).toBeGreaterThan(0);
   });
@@ -65,10 +65,21 @@ describe("streamPayments", () => {
     expect(records).toEqual(successfulPayments(fixtures.filter((f) => Number(f.rpc.ledger) <= endLedger)));
   });
 
-  it("stops when the RPC returns a short page instead of asking again", async () => {
+  it("keeps paging through short pages and stops at the first empty page", async () => {
     const { client, requests } = fakeClient(fixtures.map((f) => f.rpc));
-    await collect(streamPayments(client, { startLedger: firstLedger, pageSize: 200 }));
-    expect(requests).toHaveLength(1);
+    const records = await collect(streamPayments(client, { startLedger: firstLedger, pageSize: 200 }));
+    expect(records).toEqual(successfulPayments());
+    expect(requests).toHaveLength(2);
+    expect(requests[1]?.pagination?.cursor).toBe(String(fixtures.length));
+  });
+
+  it("yields sponsored create_account records to the sponsor", async () => {
+    const sponsored = successfulPayments().filter((r) => r.sponsor);
+    expect(sponsored.length).toBeGreaterThan(0);
+    const sponsor = sponsored[0]?.sponsor as string;
+    const { client } = fakeClient(fixtures.map((f) => f.rpc));
+    const records = await collect(streamPayments(client, { startLedger: firstLedger, account: sponsor }));
+    expect(records).toEqual(expect.arrayContaining(sponsored.filter((r) => r.sponsor === sponsor)));
   });
 });
 

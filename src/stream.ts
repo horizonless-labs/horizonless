@@ -15,13 +15,14 @@ export interface StreamPaymentsOptions extends ConvertOptions {
   startLedger: number;
   /** Last ledger to read (inclusive). Default: read until the RPC's latest ledger. */
   endLedger?: number;
-  /** Only yield records where this account sends or receives. */
+  /** Only yield records involving this account (sender, receiver, funder, merged account or sponsor). */
   account?: string;
-  /** Page size for `getTransactions`. Default: 200. */
+  /** Page size for `getTransactions`. Default: 200 (the maximum SDF's RPC allows). */
   pageSize?: number;
 }
 
-const PARTIES = ["from", "to", "funder", "account", "into"] as const;
+/** Fields naming an account a record involves; matches Horizon's operation participants. */
+const PARTIES = ["from", "to", "funder", "account", "into", "sponsor"] as const;
 
 function involves(record: PaymentOperationRecord, account: string): boolean {
   return PARTIES.some((field) => (record as unknown as Record<string, unknown>)[field] === account);
@@ -29,7 +30,7 @@ function involves(record: PaymentOperationRecord, account: string): boolean {
 
 /**
  * Walks RPC transactions from `startLedger` and yields Horizon-shaped payment records in
- * ledger order. Stops at `endLedger`, or when the RPC has no newer transactions.
+ * ledger order. Stops at `endLedger`, or when the RPC returns an empty page (no newer transactions).
  */
 export async function* streamPayments(client: TransactionsClient, options: StreamPaymentsOptions): AsyncGenerator<PaymentOperationRecord> {
   const limit = options.pageSize ?? 200;
@@ -46,7 +47,7 @@ export async function* streamPayments(client: TransactionsClient, options: Strea
         if (!options.account || involves(record, options.account)) yield record;
       }
     }
-    if (page.transactions.length < limit || !page.cursor) return;
+    if (page.transactions.length === 0 || !page.cursor) return;
     request = { pagination: { cursor: page.cursor, limit } };
   }
 }

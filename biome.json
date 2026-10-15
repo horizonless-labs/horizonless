@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "files": { "includes": ["**", "!dist", "!coverage", "!test/fixtures", "!PLAN.md", "!check-sessions.py"] },
+  "files": { "includes": ["**", "!dist", "!coverage", "!test/fixtures", "!test/pending"] },
   "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 140 },
   "linter": { "enabled": true, "rules": { "preset": "none" } },
   "assist": { "actions": { "source": { "organizeImports": "on" } } }
