@@ -1,13 +1,11 @@
 name: Release
 
 # Opens a "Version packages" PR from pending changesets; merging it publishes to npm.
-# Before enabling the push trigger:
-#   1. Settings > Actions > General: allow GitHub Actions to create pull requests.
-#   2. npmjs.com: add this repository and workflow as a trusted publisher for "horizonless".
+# Publishing uses npm trusted publishing (OIDC): no npm token is stored in this repo.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-  # push:
-  #   branches: [main]
 
 permissions:
   contents: write
@@ -26,6 +24,8 @@ jobs:
           node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
+      # Trusted publishing needs npm >= 11.5.1
+      - run: npm install -g npm@^11.15.0
       - run: npm ci
       - run: npm run build
       - uses: changesets/action@v1
